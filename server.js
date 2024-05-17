@@ -1,7 +1,10 @@
 const express = require('express');
 const messagesRouter = require('./routes/messages.router.js');
 const friendsRouter = require('./routes/friends.router.js');
+const path = require('path');
 const app = express();
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 const PORT = 3000;
 
@@ -15,14 +18,19 @@ app.use((req,res,next)=>{
     console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
+//Serve Static Files to a specific route
+app.use('/site', express.static(path.join(__dirname, 'public')));
 //Register JSON-parsing middleware
 app.use(express.json());
 
 //Middleware Endpoint
 
-//Route handler for /
+//Route for View with render method for hbs
 app.get('/', (req, res)=>{
-    res.send('<h1>Home page</h1>');
+    res.render('index', {
+        title: 'My friends',
+        caption: 'My friends',
+    });
 });
 
 //Routers for other routes

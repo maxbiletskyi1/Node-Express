@@ -1,0 +1,14 @@
+body{
+    font:14px sans-serif;
+    padding: 50px;
+    background-color: aliceblue;
+}
+
+a{
+    color:#00b7ff;
+}
+
+img{
+    height: 200px;
+    width: 300px;
+}
